@@ -1,8 +1,9 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "1.2.80",
-  "description": "Angular2 Breadcrumbs",
-  "main": "lib/AngularBreadcrumbs.js",
+  "version": "1.2.82",
+  "description": "Angular2 Breadcrumb",
+  "main": "./index.js",
+  "typings": "ng2-breadcrumbs.d.ts",
   "scripts": {
     "watch": "tsc -p src -w",
     "build": "rm -rf lib && tsc -p src"
@@ -21,7 +22,7 @@
   "license": "MIT",
   "homepage": "https://github.com/Taulantdisha/ng2-breadcrumbs",
   "devDependencies": {
-    "typescript": "^1.7.5"
+    "typescript": "^2.0.0"
   },
   "dependencies": {
     "@angular/core": "2.1.0",
