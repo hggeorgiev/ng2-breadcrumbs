@@ -1,5 +1,5 @@
-Angular 2 Breadcrumbs
-This module uses Angular 2 Routes.
+# Angular 2 Breadcrumbs
+[![npm version](https://badge.fury.io/js/ng2-breadcrumbs.svg)](https://badge.fury.io/js/ng2-breadcrumbs)
 
 
 Installation
