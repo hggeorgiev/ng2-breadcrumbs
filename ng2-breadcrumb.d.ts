@@ -1,2 +1,2 @@
-export * from './lib/BreadcrumbComponent';
+export * from './src/breadcrumbs.module';
 
