@@ -1,13 +1,15 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Breadcrumb generator for Angular 2",
-  "main": "./index.js",
+  "main": "./ng2-breadcrumb.js",
   "typings": "ng2-breadcrumbs.d.ts",
   "scripts": {
     "watch": "tsc -p src -w",
-    "build": "rm -rf lib && tsc -p src"
+    "build": "rm -rf lib && tsc -p src",
+    "prepublish": "tsc"
   },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/Centroida/ng2-breadcrumb"

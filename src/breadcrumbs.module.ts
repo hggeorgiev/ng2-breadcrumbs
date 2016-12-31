@@ -19,7 +19,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
     ],
     exports: [BreadcrumbComponent]
 })
-export class BreadcrumbModule {
+export class BreadcrumbsModule {
     constructor() {}
 
 }
