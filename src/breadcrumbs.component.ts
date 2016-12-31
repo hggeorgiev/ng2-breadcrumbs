@@ -8,8 +8,8 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 
 @Component({
     selector: "breadcrumb",
-    template: require('./breadcrumbs.template.pug'),
-    styles: [require('./breadcrumbs.styles.scss')]
+    // template: require('./breadcrumbs.template.pug'),
+    // styles: [require('./breadcrumbs.styles.scss')]
 })
 
 export class BreadcrumbComponent implements OnInit {
@@ -21,9 +21,8 @@ export class BreadcrumbComponent implements OnInit {
 
 
     constructor(private breadcrumbService:BreadcrumbsService, private activatedRoute: ActivatedRoute, private router: Router) {
-        breadcrumbService.get().subscribe((breadcrumbs:IBreadcrumb) => {
-            console.log(breadcrumbs);
-            this.breadcrumbs = breadcrumbs
+        breadcrumbService.get().subscribe((breadcrumbs:IBreadcrumb[]) => {
+            this.breadcrumbs = breadcrumbs as IBreadcrumb[];
         });
     }
 
@@ -62,11 +61,11 @@ export class BreadcrumbComponent implements OnInit {
                     }
 
                     /*
-                        Verify the custom data property "breadcrumb"
-                        is specified on the route or in its parameters.
+                     Verify the custom data property "breadcrumb"
+                     is specified on the route or in its parameters.
 
-                       Route parameters take precedence over route data
-                       attributes.
+                     Route parameters take precedence over route data
+                     attributes.
                      */
                     if (route.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
                         breadCrumbLabel = route.snapshot.data[ROUTE_DATA_BREADCRUMB];
@@ -74,7 +73,7 @@ export class BreadcrumbComponent implements OnInit {
                         breadCrumbLabel = route.snapshot.params['breadcrumb'].replace(/_/g, " ")
                     } else {
                         //fallback to empty string
-                        breadCrumbLabel = '';
+                        breadCrumbLabel = 'empty_breadcrumb_name';
                     }
 
 
@@ -86,7 +85,7 @@ export class BreadcrumbComponent implements OnInit {
 
                     // Cannot have parameters on a root route
                     if(routeURL.length == 0) {
-                        route.snapshot.params = '';
+                        route.snapshot.params = {};
                     }
 
 

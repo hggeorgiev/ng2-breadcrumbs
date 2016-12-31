@@ -1,6 +1,3 @@
-
-
-
 import {NgModule} from "@angular/core";
 import {BreadcrumbComponent} from "./breadcrumbs.component";
 import {RouterModule} from "@angular/router";
@@ -24,8 +21,6 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 })
 export class BreadcrumbModule {
     constructor() {}
-
-
 
 }
 

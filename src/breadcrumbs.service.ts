@@ -7,8 +7,8 @@ export class BreadcrumbsService {
 
     private breadcrumbs:IBreadcrumb[];
     private prefixedBreadcrumbs:IBreadcrumb[] = [];
-    public breadcrumbsSource:Subject;
-    public breadcrumbsChanged$:Observer;
+    public breadcrumbsSource:Subject<IBreadcrumb[]>;
+    public breadcrumbsChanged$:Observable<IBreadcrumb[]>;
 
     constructor() {
         this.breadcrumbs = [];
@@ -21,7 +21,7 @@ export class BreadcrumbsService {
     }
 
     //Store the breadcrumbs of the current route
-    public store(breadcrumbs) {
+    public store(breadcrumbs:IBreadcrumb[]) {
         this.breadcrumbs = breadcrumbs;
 
         let allBreadcrumbs = this.prefixedBreadcrumbs.concat(this.breadcrumbs);
@@ -31,7 +31,7 @@ export class BreadcrumbsService {
 
 
     // Add a prefixed breadcrumb
-    public storePrefixed(breadcrumb) {
+    public storePrefixed(breadcrumb:IBreadcrumb) {
         this.storeIfUnique(breadcrumb);
         localStorage.setItem('prefixedBreadcrumbs', JSON.stringify(this.prefixedBreadcrumbs));
         let allBreadcrumbs = this.prefixedBreadcrumbs.concat(this.breadcrumbs);
@@ -42,7 +42,7 @@ export class BreadcrumbsService {
 
     //Return the breadcrumbs
     public get() {
-      return this.breadcrumbsChanged$
+        return this.breadcrumbsChanged$
     }
 
 

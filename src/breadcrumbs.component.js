@@ -9,58 +9,85 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 require("rxjs/add/operator/filter");
 var BreadcrumbComponent = (function () {
-    function BreadcrumbComponent(activatedRoute, router) {
+    function BreadcrumbComponent(breadcrumbService, activatedRoute, router) {
+        var _this = this;
+        this.breadcrumbService = breadcrumbService;
         this.activatedRoute = activatedRoute;
         this.router = router;
-        this.breadcrumbs = [];
+        breadcrumbService.get().subscribe(function (breadcrumbs) {
+            _this.breadcrumbs = breadcrumbs;
+        });
     }
     BreadcrumbComponent.prototype.ngOnInit = function () {
         var _this = this;
         var ROUTE_DATA_BREADCRUMB = "breadcrumb";
+        var ROUTE_PARAM_BREADCRUMB = "breadcrumb";
+        var PREFIX_BREADCRUMB = "prefixBreadcrumb";
         //subscribe to the NavigationEnd event
         this.router.events.filter(function (event) { return event instanceof router_1.NavigationEnd; }).subscribe(function (event) {
-            //reset breadcrumbs
-            _this.breadcrumbs = [];
-            //get the root route
+            //reset currentBreadcrumbs
+            _this.currentBreadcrumbs = [];
+            //get the root of the current route
             var currentRoute = _this.activatedRoute.root;
             //set the url to an empty string
             var url = "";
             //iterate from activated route to children
             while (currentRoute.children.length > 0) {
                 var childrenRoutes = currentRoute.children;
+                var breadCrumbLabel = '';
                 //iterate over each children
                 childrenRoutes.forEach(function (route) {
-                    //set currentRoute to this route
+                    // Set currentRoute to this route
                     currentRoute = route;
-                    //verify this is the primary route
+                    // Verify this is the primary route
                     if (route.outlet !== router_1.PRIMARY_OUTLET) {
                         return;
                     }
-                    //verify the custom data property "breadcrumb" is specified on the route
-                    if (!route.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
-                        return;
+                    /*
+                     Verify the custom data property "breadcrumb"
+                     is specified on the route or in its parameters.
+
+                     Route parameters take precedence over route data
+                     attributes.
+                     */
+                    if (route.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
+                        breadCrumbLabel = route.snapshot.data[ROUTE_DATA_BREADCRUMB];
                     }
-                    //get the route's URL segment
+                    else if (route.snapshot.params.hasOwnProperty(ROUTE_PARAM_BREADCRUMB)) {
+                        breadCrumbLabel = route.snapshot.params['breadcrumb'].replace(/_/g, " ");
+                    }
+                    else {
+                        //fallback to empty string
+                        breadCrumbLabel = 'empty_breadcrumb_name';
+                    }
+                    // Get the route's URL segment
                     var routeURL = route.snapshot.url.map(function (segment) { return segment.path; }).join("/");
-                    //append route URL to URL
                     url += "/" + routeURL;
-                    //add breadcrumb
+                    // Cannot have parameters on a root route
+                    if (routeURL.length == 0) {
+                        route.snapshot.params = {};
+                    }
+                    // Add breadcrumb
                     var breadcrumb = {
-                        name: route.snapshot.data[ROUTE_DATA_BREADCRUMB],
-                        label: route.snapshot.params.name.replace(/_/g, " "),
+                        label: breadCrumbLabel,
                         params: route.snapshot.params,
                         url: url
                     };
-                    _this.breadcrumbs.push(breadcrumb);
+                    // Add the breadcrumb as 'prefixed'. It will appear before all breadcrumbs
+                    if (route.snapshot.data.hasOwnProperty(PREFIX_BREADCRUMB)) {
+                        _this.breadcrumbService.storePrefixed(breadcrumb);
+                    }
+                    else {
+                        _this.currentBreadcrumbs.push(breadcrumb);
+                    }
                 });
+                _this.breadcrumbService.store(_this.currentBreadcrumbs);
             }
         });
     };
     BreadcrumbComponent = __decorate([
         core_1.Component({
             selector: "breadcrumb",
-            template: require('./breadcrumbs.template.pug'),
-            styles: require(['./breadcrumbs.styles.scss'])
         })
     ], BreadcrumbComponent);
     return BreadcrumbComponent;
