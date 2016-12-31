@@ -88,6 +88,8 @@ var BreadcrumbComponent = (function () {
     BreadcrumbComponent = __decorate([
         core_1.Component({
             selector: "breadcrumb",
+            templateUrl: "./breadcrumbs.template.html",
+            styleUrls: ['./breadcrumbs.styles.css']
         })
     ], BreadcrumbComponent);
     return BreadcrumbComponent;

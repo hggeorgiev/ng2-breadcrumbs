@@ -1,6 +1,6 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Breadcrumb generator for Angular 2",
   "main": "./index.js",
   "typings": "ng2-breadcrumbs.d.ts",

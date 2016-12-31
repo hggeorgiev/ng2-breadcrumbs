@@ -8,8 +8,8 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 
 @Component({
     selector: "breadcrumb",
-    // template: require('./breadcrumbs.template.pug'),
-    // styles: [require('./breadcrumbs.styles.scss')]
+    templateUrl: "./breadcrumbs.template.html",
+    styleUrls: ['./breadcrumbs.styles.css']
 })
 
 export class BreadcrumbComponent implements OnInit {

@@ -1,7 +1,0 @@
-//
-   Created by Centroida-2 on 10/27/2016.
-.container-fluid.fluid-bread
-    .container
-        ul.breadcrumb
-            li.breadcrumb.list(*ngFor='let breadcrumb of breadcrumbs')
-                a([class.disabled]="breadcrumb.label", [routerLink]='[breadcrumb.url, breadcrumb.params]') {{breadcrumb.label}}

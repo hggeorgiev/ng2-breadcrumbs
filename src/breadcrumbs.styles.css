@@ -1,0 +1,24 @@
+.fluid-bread {
+  background-color: white;
+}
+
+li.breadcrumb.list {
+  margin: 0;
+}
+
+.breadcrumb {
+  background-color: white;
+  padding: 4px;
+  margin-bottom: 0;
+}
+
+a.disabled {
+  color: gray;
+  cursor: default;
+}
+a.disabled:hover {
+  text-decoration: none;
+}
+a.disabled:first-letter {
+  text-transform: capitalize;
+}
