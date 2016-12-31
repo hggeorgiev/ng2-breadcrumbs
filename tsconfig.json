@@ -1,27 +1,20 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
-    "noImplicitAny": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "outDir": ".tmp/es5",
-    "rootDir": ".",
-    "sourceMap": true,
-    "removeComments": false,
+    "module": "commonjs",
     "moduleResolution": "node",
+    "sourceMap": true,
     "declaration": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ]
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "listFiles": false,
+    "noLib": false
   },
-  "angularCompilerOptions": {
-    "genDir": ".tmp",
-    "debug": false,
-    "skipMetadataEmit": false
-  },
-  "include": [
-    "src/**/*"
+  "exclude": [
+    "node_modules",
+    "demo"
   ]
 }

@@ -1,3 +1,24 @@
-examples
-node_modules
-src
+.idea
+gulp-tasks
+logs
+
+# typings
+typings
+
+# testing
+karma.conf.js
+test.bundle.js
+coverage
+
+# demo build
+demo
+demo-build
+demo/webpack/webpack.config.js
+
+*.ts
+!*.d.ts
+*.js.map
+/src/*.ts
+/src/*.js.map
+!/src/*.d.ts
+!/bundles/*.js.map
