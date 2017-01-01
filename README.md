@@ -12,7 +12,8 @@ ng2-breadrumbs is a module for [Angular 2](https://angular.io/) that generates a
 npm install --save ng2-breadcrumbs
 ```
 
-2. Import the `BreadcrumbsModule` within your app
+2. Import the `BreadcrumbsModule` within your app:
+
 ```js
 import {BreadcrumbsModule} from "ng2-breadcrumbs";
 
@@ -24,6 +25,7 @@ import {BreadcrumbsModule} from "ng2-breadcrumbs";
 ```
 
 3. Add a name to your route by adding a `breadcrumb` property in the route's `data`:
+
 ```js
 export const routes: Routes = 
 [
@@ -36,6 +38,7 @@ export const routes: Routes =
   }
 ]
 ```
+
 4. Put the `BreadcrumbsComponent`'s selector within your template:
 
 ```html
