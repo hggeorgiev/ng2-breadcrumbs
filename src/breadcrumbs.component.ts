@@ -8,8 +8,15 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
 
 @Component({
     selector: "breadcrumb",
-    templateUrl: "./breadcrumbs.template.html",
-    styleUrls: ['./breadcrumbs.styles.css']
+    template: `
+            <div class="container-fluid fluid-bread">
+              <div class="container">
+                <ul class="breadcrumb">
+                  <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb list"><a [class.disabled]="breadcrumb.label" [routerLink]="[breadcrumb.url, breadcrumb.params]">{{breadcrumb.label}}</a></li>
+                </ul>
+              </div>
+            </div>`,
+    styles: ['.fluid-bread {background-color: white; } li.breadcrumb.list {margin: 0;}.breadcrumb {background-color: white;padding: 4px;margin-bottom: 0;}a.disabled {color: gray;cursor: default;}a.disabled:hover {text-decoration: none;}a.disabled:first-letter {text-transform: capitalize;}']
 })
 
 export class BreadcrumbComponent implements OnInit {

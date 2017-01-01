@@ -1,7 +1,0 @@
-<div class="container-fluid fluid-bread">
-  <div class="container">
-    <ul class="breadcrumb">
-      <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb list"><a [class.disabled]="breadcrumb.label" [routerLink]="[breadcrumb.url, breadcrumb.params]">{{breadcrumb.label}}</a></li>
-    </ul>
-  </div>
-</div>
