@@ -2,8 +2,7 @@
   "name": "ng2-breadcrumbs",
   "version": "0.1.21",
   "description": "Breadcrumb generator for Angular 2",
-  "main": "./ng2-breadcrumb.js",
-  "typings": "ng2-breadcrumbs.d.ts",
+  "main": "./ng2-breadcrumbs.js",
   "scripts": {
     "watch": "tsc -p src -w",
     "build": "rm -rf lib && tsc -p src",
@@ -39,7 +38,6 @@
     "@angular/platform-browser": "^2.2.0",
     "@angular/platform-browser-dynamic": "^2.2.0",
     "@angular/platform-server": "^2.2.0",
-    "zone.js": "^0.6.25"
   },
   "dependencies": {
 
