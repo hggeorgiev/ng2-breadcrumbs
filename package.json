@@ -1,6 +1,6 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "Breadcrumb generator for Angular 2",
   "main": "./ng2-breadcrumbs.js",
   "scripts": {
@@ -37,10 +37,9 @@
     "@angular/http": "^2.2.0",
     "@angular/platform-browser": "^2.2.0",
     "@angular/platform-browser-dynamic": "^2.2.0",
-    "@angular/platform-server": "^2.2.0",
+    "@angular/platform-server": "^2.2.0"
   },
   "dependencies": {
-
   },
   "typings": "ng2-breadcrumbs.d.ts"
 }
