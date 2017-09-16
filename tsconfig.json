@@ -1,20 +1,25 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "listFiles": false,
-    "noLib": false
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "types": [
+      "core-js"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
+    ]
   },
   "exclude": [
-    "node_modules",
-    "demo"
+    "node_modules"
   ]
 }

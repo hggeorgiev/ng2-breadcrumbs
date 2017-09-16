@@ -73,5 +73,4 @@ In case you want a dynamic breadcrumb name, you can pass it as a `:breadcrumb` r
  1. Add more use cases (using routerLinks, for example).
  2. Document `BreadcrumbService`.
  3. Add demo.
- 4. Add a license
  
