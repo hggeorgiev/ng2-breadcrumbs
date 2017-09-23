@@ -35,9 +35,6 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-lib
 
-# Remove tsc generated js and map file
-*.map
-ng2-breadcrumbs.d.ts
-ng2-breadcrumbs.js
+# Ignoring generated files
+lib
