@@ -1,6 +1,6 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "0.1.26",
+  "version": "0.1.272",
   "description": "Breadcrumb generator for Angular 5",
   "main": "./ng2-breadcrumbs.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "ng",
     "Breadcrumbs"
   ],
+  "typings": "./ng2-breadcrumbs.d.ts",
   "author": "Centroida",
   "license": "MIT",
   "homepage": "https://github.com/Centroida/ng2-breadcrumb",
