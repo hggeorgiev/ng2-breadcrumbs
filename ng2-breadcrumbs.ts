@@ -1,5 +1,4 @@
-export * from './src/breadcrumbs.component';
-export * from './src/breadcrumbs.service';
-export * from './src/breadcrumbs.model';
-export * from './src/breadcrumbs.module';
-
+export * from './lib/breadcrumbs.component';
+export * from './lib/breadcrumbs.service';
+export * from './lib/breadcrumbs.model';
+export * from './lib/breadcrumbs.module';

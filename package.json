@@ -1,12 +1,12 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "Breadcrumb generator for Angular 5",
   "main": "./ng2-breadcrumbs.js",
   "scripts": {
-    "watch": "tsc -p src -w",
-    "build": "rm -rf lib && tsc -p src",
-    "prepublish": "tsc"
+    "clear-lib": "rm -rf lib",
+    "prepublish": "npm run clear-lib && npm run ngc-build",
+    "ngc-build": "ngc -p ./tsconfig-ngc.json"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,10 @@
   "license": "MIT",
   "homepage": "https://github.com/Centroida/ng2-breadcrumb",
   "devDependencies": {
-    "@angular/common": "~4.3.6",
     "@angular/animations": "~4.3.6",
+    "@angular/common": "~4.3.6",
     "@angular/compiler": "~4.3.6",
+    "@angular/compiler-cli": "^4.4.3",
     "@angular/core": "~4.3.6",
     "@angular/forms": "~4.3.6",
     "@angular/http": "~4.3.6",

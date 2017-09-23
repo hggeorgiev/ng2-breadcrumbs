@@ -35,20 +35,10 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
+lib
+
 # Remove tsc generated js and map file
 *.map
 ng2-breadcrumbs.d.ts
 ng2-breadcrumbs.js
 ng2-breadcrumbs.js.map
-src/breadcrumbs.component.d.ts
-src/breadcrumbs.component.js
-src/breadcrumbs.component.js.map
-src/breadcrumbs.model.d.ts
-src/breadcrumbs.model.js
-src/breadcrumbs.model.js.map
-src/breadcrumbs.module.d.ts
-src/breadcrumbs.module.js
-src/breadcrumbs.module.js.map
-src/breadcrumbs.service.d.ts
-src/breadcrumbs.service.js
-src/breadcrumbs.service.js.map

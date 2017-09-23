@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "outDir": "./lib",
+    "stripInternal": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./src/breadcrumbs.component.ts",
+    "./src/breadcrumbs.model.ts",
+    "./src/breadcrumbs.module.ts",
+    "./src/breadcrumbs.service.ts"
+  ],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true
+  }
+}
