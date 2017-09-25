@@ -78,13 +78,7 @@ export class BreadcrumbComponent implements OnInit {
                         breadCrumbLabel = route.snapshot.data[ROUTE_DATA_BREADCRUMB];
                     } else if(route.snapshot.params.hasOwnProperty(ROUTE_PARAM_BREADCRUMB)) {
                         breadCrumbLabel = route.snapshot.params['breadcrumb'].replace(/_/g, " ")
-                    } else {
-                        //fallback to empty string
-                        breadCrumbLabel = 'empty_breadcrumb_name';
                     }
-
-
-
 
                     // Get the route's URL segment
                     let routeURL: string = route.snapshot.url.map(segment => segment.path).join("/");
