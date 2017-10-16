@@ -1,6 +1,6 @@
 {
   "name": "ng2-breadcrumbs",
-  "version": "0.1.272",
+  "version": "0.1.28",
   "description": "Breadcrumb generator for Angular 5",
   "main": "./ng2-breadcrumbs.js",
   "scripts": {
