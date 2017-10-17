@@ -13,7 +13,7 @@ import {BreadcrumbsModule} from "../ng2-breadcrumbs";
         AppComponent
     ],
     imports: [
-        BrowserModule,
+        BrowserModule ,
         FormsModule,
         HttpModule,
         RouterModule.forRoot(ROUTES, {useHash: true}),
