@@ -5,6 +5,8 @@ logs
 *.log
 npm-debug.log*
 
+breadcrumb-demo
+
 # Runtime data
 pids
 *.pid
