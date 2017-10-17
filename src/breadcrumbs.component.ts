@@ -10,7 +10,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
     template: `
         <div [ngClass]="{ 'container-fluid': allowBootstrap, 'fluid-bread': true}">
             <div class="container">
-                <ol [ngClass]="{ 'breadcrumb': allowBootstrap, addClass: addClass}">
+                <ol [ngClass]="{ 'breadcrumb': allowBootstrap}" class="{{addClass ? '' + addClass : ''}}">
                     <li *ngFor="let breadcrumb of breadcrumbs; let last = last"
                         [ngClass]="{ 'breadcrumb-item': allowBootstrap, 'list': true, 'active': last }">
                         <a *ngIf="!last" [routerLink]="hasParams(breadcrumb)">
