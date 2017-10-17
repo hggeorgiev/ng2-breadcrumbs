@@ -30,22 +30,49 @@ import {BreadcrumbsModule} from "ng2-breadcrumbs";
 3.Add a name to your route by adding a `breadcrumb` property in the route's `data`:
 
 ```js
-export const routes: Routes = 
-[
-  {
-    path: 'home',
-    data: {
-      breadcrumb: 'Home',
+export const ROUTES: Routes = [
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {
+        path: 'home',
+        loadChildren: 'app/home/home.module#HomeModule',
+        data: {
+            breadcrumb: 'Home'
+        }
     },
-    component: HomeComponent
-  }
-]
+    {
+        path: 'stores',
+        loadChildren: 'app/stores/stores.module#StoresModule',
+        data: {
+            breadcrumb: 'Stores'
+        }
+    }
+];
 ```
 
 4.Put the `BreadcrumbsComponent`'s selector within your template:
 
 ```html
-<breadcrumb></breadcrumb>
+<breadcrumb [allowBootstrap]="true"></breadcrumb>
+<router-outlet></router-outlet>
+```
+
+5. Then your `StoresModule`'s routes will look like this:
+
+```js
+const STORE_ROUTES: Routes = [
+    {
+        path: '',
+        component: StoresComponent
+    },
+    {
+        path: 'books',
+        data: {
+            breadcrumb: 'Books'
+        },
+        loadChildren: 'app/books/books.module#BooksModule'
+    }
+
+];
 ```
 
 ## Adding dynamic routes
@@ -53,20 +80,23 @@ export const routes: Routes =
 In case you want a dynamic breadcrumb name, you can pass it as a `:breadcrumb` route parameter when navigating:
 **Route:**
 ```js
-   //Add an extra route parameter that will contain the breadcrumb name
-		{
-			path: ':id/:breadcrumb',
-			component: ProfileBreadcrumbDetails,
-		}
+//Add an extra route parameter that will contain the breadcrumb name
+const BOOK_ROUTES: Routes = [
+    {
+        path: '',
+        component: BooksComponent
+    },
+    {
+        path: 'book/:id/:breadcrumb',
+        component: BookComponent
+    }
+];
 ```
 **Router code:**
 ```
-    public name = 'John Doe';
-    public id = 3;
-    goToDetails() {
-        //This will put 'John_Doe' as a route parameter
-        this._router.navigate([`/profiles`, this.id, this.name.replace(/ /g,"_")]);
-		}
+    public goToBook(book: Book) {
+        this.router.navigate(['book' , book.Id, book.Name], { relativeTo: this.route });
+    }
 ```
 
 # TODO
