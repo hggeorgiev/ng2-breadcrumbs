@@ -117,10 +117,18 @@ export class MyRoutableComponent {
 
 ```
 
-The `BreadcrumbsService`'s `store' method accepts an array of breadcrumb object. Each breadcrumb object should contain:
+### Prefixing routes
+ Suppose that you already have your breadcrumbs generated, but due to the nesting of the routers, you want to add a few breadcrumbs from route s of the parent router.
+
+```
+this.breadcrumbs.storePrefixed({label: 'Home' , url: '/', params: []})
+```
+
+### Breadcrumb format
+The `BreadcrumbsService`'s `store' and `storePrefixed` methods breadcrumb objects. A breadcrumb object should contain:
 - `label` -  The text displayed on the breadcrumb
 - `url` - The link that it leads to
-- `params' - A collection of route [parameters](https://angular.io/api/router/Params)
+- `params` - A collection of route [parameters](https://angular.io/api/router/Params)
 
 
 # TODO
