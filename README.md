@@ -102,7 +102,7 @@ const BOOK_ROUTES: Routes = [
 
 ## Adding routes manually
 
-In case the router configuration does not satisfy the way you want to construct your breadcrumb structure, you can do it manually through `BreadcrumbsService`. You can add your custom breadcrumbs through your route's routable component, for example:
+In case the router configuration does not satisfy the way you want to design your breadcrumb structure, you can do it manually through `BreadcrumbsService`. You can add your custom breadcrumbs through your route's routable component, for example:
 
 
 ```
