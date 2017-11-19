@@ -118,7 +118,7 @@ export class MyRoutableComponent {
 ```
 
 ### Prefixing routes
- Suppose that you already have your breadcrumbs generated, but due to the nesting of the routers, you want to add a few breadcrumbs from route s of the parent router.
+ Suppose that you already have your breadcrumbs generated, but due to the nesting of the routers, you want to add a breadcrumb from the parent router:
 
 ```
 this.breadcrumbs.storePrefixed({label: 'Home' , url: '/', params: []})
