@@ -1,9 +1,9 @@
-**NOTE:** This package is still under development. Contributions are appreciated. 
-# ng4-breadcrumbs
+# ng2-breadcrumbs
 [![npm version](https://badge.fury.io/js/ng2-breadcrumbs.svg)](https://badge.fury.io/js/ng2-breadcrumbs)
 
-ng2-breadrumbs is a module for [Angular 4](https://angular.io/) that generates a breadcrumb for any page of your application. It is based on the built-in [Angular 4 router](https://angular.io/docs/ts/latest/guide/router.html).
+ng2-breadrumbs is a module for [Angular 5](https://angular.io/) that generates a breadcrumb for any page of your application. It is based on the built-in [Angular 5 router](https://angular.io/docs/ts/latest/guide/router.html).
 
+## [Demo](https://centroida.github.io/ng4-breadcrumbs/)
 
 # Usage
 
@@ -99,8 +99,31 @@ const BOOK_ROUTES: Routes = [
     }
 ```
 
+
+## Adding routes manually
+
+In case the router configuration does not satisfy the way you want to construct your breadcrumb structure, you can do it manually through `BreadcrumbsService`. You can add your custom breadcrumbs through your route's routable component, for example:
+
+
+```
+export class MyRoutableComponent {
+  constructor( private breadcrumbsService:BreadcrumbsService) {
+  }
+
+  ngOnInit() {
+    this.breadcrumbs.store([{label: 'Home' , url: '/', params: []},{label: 'Careers' , url: '/careers', params: []}, {label:  'MyCustomRouteLabel' , url: '', params: []} ])
+  }
+}
+
+```
+
+The `BreadcrumbsService`'s `store' method accepts an array of breadcrumb object. Each breadcrumb object should contain:
+- `label` -  The text displayed on the breadcrumb
+- `url` - The link that it leads to
+- `params' - A collection of route [parameters](https://angular.io/api/router/Params)
+
+
 # TODO
  1. Add more use cases (using routerLinks, for example).
- 2. Document `BreadcrumbService`.
- 3. Add demo.
+
  
