@@ -5,7 +5,7 @@
   "main": "./ng2-breadcrumbs.js",
   "scripts": {
     "clear-lib": "rm -rf lib",
-    "prepublish": "npm run clear-lib && npm run ngc-build",
+    "prepublish": "npm run ngc-build",
     "ngc-build": "ngc -p ./tsconfig-ngc.json"
   },
   "repository": {
@@ -39,7 +39,7 @@
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0-beta.3",
     "core-js": "~2.4.1",
-    "rxjs": "~5.4.3",
+    "rxjs": "^5.5.2",
     "ts-loader": "~0.8.2",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.0",

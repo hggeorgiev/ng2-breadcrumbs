@@ -1,6 +1,5 @@
 import { OnInit } from "@angular/core";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import "rxjs/add/operator/filter";
+import { Router, ActivatedRoute } from "@angular/router";
 import { IBreadcrumb } from "./breadcrumbs.model";
 import { BreadcrumbsService } from "./breadcrumbs.service";
 export declare class BreadcrumbComponent implements OnInit {
@@ -12,6 +11,8 @@ export declare class BreadcrumbComponent implements OnInit {
     allowBootstrap: boolean;
     addClass: string;
     constructor(breadcrumbService: BreadcrumbsService, activatedRoute: ActivatedRoute, router: Router);
-    hasParams(breadcrumb: IBreadcrumb): (string | Params)[];
+    hasParams(breadcrumb: IBreadcrumb): (string | {
+        [key: string]: any;
+    })[];
     ngOnInit(): void;
 }

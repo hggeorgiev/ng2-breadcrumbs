@@ -1,5 +1,6 @@
 import { IBreadcrumb } from "./breadcrumbs.model";
-import { Observable, Subject } from "rxjs";
+import { Observable } from "rxjs/observable";
+import { Subject } from "rxjs/Subject";
 export declare class BreadcrumbsService {
     private breadcrumbs;
     private prefixedBreadcrumbs;
