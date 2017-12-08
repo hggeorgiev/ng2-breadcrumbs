@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {IBreadcrumb} from "./breadcrumbs.model";
-import {Observable} from "rxjs/observable";
 import {Subject} from "rxjs/Subject";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class BreadcrumbsService {
