@@ -4,8 +4,6 @@
   "description": "Breadcrumb generator for Angular 5",
   "main": "./ng2-breadcrumbs.js",
   "scripts": {
-    "clear-lib": "rm -rf lib",
-    "prepublish": "npm run clear-lib && npm run ngc-build",
     "ngc-build": "ngc -p ./tsconfig-ngc.json"
   },
   "repository": {
@@ -27,7 +25,7 @@
     "@angular/animations": "~4.3.6",
     "@angular/common": "~4.3.6",
     "@angular/compiler": "~4.3.6",
-    "@angular/compiler-cli": "^4.4.3",
+    "@angular/compiler-cli": "~4.4.3",
     "@angular/core": "~4.3.6",
     "@angular/forms": "~4.3.6",
     "@angular/http": "~4.3.6",

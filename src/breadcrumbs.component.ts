@@ -3,6 +3,7 @@ import {Router, ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET} from "@an
 import "rxjs/add/operator/filter";
 import {IBreadcrumb} from "./breadcrumbs.model";
 import {BreadcrumbsService} from "./breadcrumbs.service";
+import {IBreadcrumbData} from "./i-breadcrumb-data";
 
 
 @Component({
@@ -12,6 +13,7 @@ import {BreadcrumbsService} from "./breadcrumbs.service";
             <div class="container">
                 <ol [ngClass]="{ 'breadcrumb': allowBootstrap}" class="{{addClass ? '' + addClass : ''}}">
                     <li *ngFor="let breadcrumb of breadcrumbs; let last = last"
+                        class="{{breadcrumb.className ? '' + breadcrumb.className : ''}}"
                         [ngClass]="{ 'breadcrumb-item': allowBootstrap, 'list': true, 'active': last }">
                         <a *ngIf="!last" [routerLink]="hasParams(breadcrumb)">
                             {{breadcrumb.label}}
@@ -92,6 +94,7 @@ export class BreadcrumbComponent implements OnInit {
                     }
 
                     const hasData = (route.routeConfig && route.routeConfig.data);
+                    const breadcrumbData: IBreadcrumbData = route.snapshot.data[ROUTE_DATA_BREADCRUMB] || {};
                     const hasDynamicBreadcrumb: boolean = route.snapshot.params.hasOwnProperty(ROUTE_PARAM_BREADCRUMB);
 
                     if (hasData || hasDynamicBreadcrumb) {
@@ -106,25 +109,22 @@ export class BreadcrumbComponent implements OnInit {
                          */
                         if (hasDynamicBreadcrumb) {
                             breadCrumbLabel = route.snapshot.params[ROUTE_PARAM_BREADCRUMB].replace(/_/g, " ");
-                        } else if (route.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
-                            breadCrumbLabel = route.snapshot.data[ROUTE_DATA_BREADCRUMB];
+                        } else if (breadcrumbData.dynamicBreadcrumb) {
+                            breadCrumbLabel = route.snapshot.params[breadcrumbData.dynamicBreadcrumb];
+                        } else if (breadcrumbData.breadcrumb) {
+                            breadCrumbLabel = breadcrumbData.breadcrumb;
                         }
 
                         // Get the route's URL segment
                         let routeURL: string = route.snapshot.url.map(segment => segment.path).join("/");
                         url += `/${routeURL}`;
 
-                        // Cannot have parameters on a root route
-                        if (routeURL.length === 0) {
-                            route.snapshot.params = {};
-                        }
-
-
                         // Add breadcrumb
                         let breadcrumb: IBreadcrumb = {
                             label: breadCrumbLabel,
-                            params: route.snapshot.params,
-                            url: url
+                            params: {},
+                            url: url,
+                            className: breadcrumbData.className
                         };
 
                         // Add the breadcrumb as 'prefixed'. It will appear before all breadcrumbs
