@@ -6,7 +6,9 @@
   "scripts": {
     "clear-lib": "rm -rf lib",
     "prepublish": "npm run ngc-build",
-    "ngc-build": "ngc -p ./tsconfig-ngc.json"
+    "ngc-build": "ngc -p ./tsconfig-ngc.json && npm run copy-lib",
+    "copy-lib": "xcopy \"lib\" \"demo/node_modules/ng2-breadcrumbs/lib\" /e /i /Y"
+
   },
   "repository": {
     "type": "git",

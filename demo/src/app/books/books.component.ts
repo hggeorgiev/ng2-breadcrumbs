@@ -48,7 +48,7 @@ export class BooksComponent implements OnInit {
     }
 
     public goToBook(book: Book) {
-        this.router.navigate(['book' , book.Id, book.Name], { relativeTo: this.route });
+        this.router.navigate([book.Id, book.Name], { relativeTo: this.route });
     }
 
 }

@@ -1,5 +1,8 @@
+import { Params } from "@angular/router";
 export interface IBreadcrumbData {
-    breadcrumb: string;
-    dynamicBreadcrumb: string;
+    label: string;
     className: string;
+    prefix?: string;
+    url?: string;
+    params?: Params;
 }

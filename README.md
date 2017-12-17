@@ -3,7 +3,7 @@
 
 ng2-breadrumbs is a module for [Angular 5](https://angular.io/) that generates a breadcrumb for any page of your application. It is based on the built-in [Angular 5 router](https://angular.io/docs/ts/latest/guide/router.html).
 
-## [Demo](https://centroida.github.io/ng4-breadcrumbs/)
+## [Demo](https://stepano.github.io/ng2-breadcrumbs/)
 
 # Usage
 
@@ -47,6 +47,16 @@ export const ROUTES: Routes = [
         }
     }
 ];
+```
+`breadcrumb` can be `string` or `function(routeData, queryParams)` and return an object implements the interface
+```
+interface IBreadcrumbData {
+    label: string;
+    className: string;
+    prefix?: string;
+    url?: string,
+    params?: Params
+}
 ```
 
 4.Put the `BreadcrumbsComponent`'s selector within your template:
@@ -98,7 +108,28 @@ const BOOK_ROUTES: Routes = [
         this.router.navigate(['book' , book.Id, book.Name], { relativeTo: this.route });
     }
 ```
-
+``` <html>
+    <a [routerLink]="['book', book.Id, book.Name]">Book Details</a>
+```
+You want use resolver of route parameters, then you can: 
+**Router code:**
+```
+    {
+        path: ':id',
+        component: ArticleComponent,
+        data: {
+          breadcrumb: function (dataParams, queryParams) {
+            return {
+              label: dataParams.article.Name
+            }
+          }
+        },
+        resolve: {
+          article: ArticleResolver
+        }
+      }
+```
+`dataParams` / `queryParams` are the data / queryParams of route 
 
 ## Adding routes manually
 

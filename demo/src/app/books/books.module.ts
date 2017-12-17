@@ -3,24 +3,26 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {BookComponent} from "./book/book.component";
 import {BooksComponent} from "./books.component";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const BOOK_ROUTES: Routes = [
-    {
-        path: '',
-        component: BooksComponent
-    },
-    {
-        path: 'book/:id/:breadcrumb',
-        component: BookComponent
-    }
+  {
+    path: '',
+    component: BooksComponent
+  },
+  {
+    path: ':id/:breadcrumb',
+    component: BookComponent
+  }
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(BOOK_ROUTES),
-    ],
-    declarations: [BooksComponent, BookComponent]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(BOOK_ROUTES),
+    NgbModule
+  ],
+  declarations: [BooksComponent, BookComponent]
 })
 
 

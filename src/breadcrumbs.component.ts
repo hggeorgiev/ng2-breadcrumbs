@@ -4,8 +4,12 @@ import {filter} from "rxjs/operators";
 
 import {IBreadcrumb} from "./breadcrumbs.model";
 import {BreadcrumbsService} from "./breadcrumbs.service";
-import {IBreadcrumbData} from "./i-breadcrumb-data";
+import {BreadcrumbsTypes} from "./breadcrumbs-types";
 
+
+let hasBreadcrumb = function (route) {
+    return route.routeConfig && route.routeConfig.data && route.routeConfig.data[BreadcrumbsTypes.ROUTE_DATA_BREADCRUMB];
+};
 
 @Component({
     selector: "breadcrumb",
@@ -14,7 +18,7 @@ import {IBreadcrumbData} from "./i-breadcrumb-data";
             <div class="container">
                 <ol [ngClass]="{ 'breadcrumb': allowBootstrap}" class="{{addClass ? '' + addClass : ''}}">
                     <li *ngFor="let breadcrumb of breadcrumbs; let last = last"
-                        class="{{breadcrumb.className ? '' + breadcrumb.className : ''}}"
+                        class="{{breadcrumb.className}}"
                         [ngClass]="{ 'breadcrumb-item': allowBootstrap, 'list': true, 'active': last }">
                         <a *ngIf="!last" [routerLink]="hasParams(breadcrumb)">
                             {{breadcrumb.label}}
@@ -63,19 +67,14 @@ export class BreadcrumbComponent implements OnInit {
 
 
     public ngOnInit() {
-        const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
-        const ROUTE_PARAM_BREADCRUMB: string = "breadcrumb";
-        const PREFIX_BREADCRUMB: string = "prefixBreadcrumb";
-
+        const ROUTE_PARAM_BREADCRUMB = 'breadcrumb';
         // subscribe to the NavigationEnd event
         this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
             // reset currentBreadcrumbs
             this.currentBreadcrumbs = [];
 
-
             // get the root of the current route
             let currentRoute: ActivatedRoute = this.activatedRoute.root;
-
 
             // set the url to an empty string
             let url: string = "";
@@ -83,7 +82,6 @@ export class BreadcrumbComponent implements OnInit {
             // iterate from activated route to children
             while (currentRoute.children.length > 0) {
                 let childrenRoutes: ActivatedRoute[] = currentRoute.children;
-                let breadCrumbLabel: string = "";
 
                 // iterate over each children
                 childrenRoutes.forEach(route => {
@@ -93,51 +91,32 @@ export class BreadcrumbComponent implements OnInit {
                     if (route.outlet !== PRIMARY_OUTLET) {
                         return;
                     }
-
-                    const hasData = (route.routeConfig && route.routeConfig.data);
-                    const breadcrumbData: IBreadcrumbData = route.snapshot.data[ROUTE_DATA_BREADCRUMB] || {};
                     const hasDynamicBreadcrumb: boolean = route.snapshot.params.hasOwnProperty(ROUTE_PARAM_BREADCRUMB);
+                    if (hasBreadcrumb(route) || hasDynamicBreadcrumb) {
+                        url += this.breadcrumbService.getUrlForRoute(route);
 
-                    if (hasData || hasDynamicBreadcrumb) {
-
-
-                        /*
-                         Verify the custom data property "breadcrumb"
-                         is specified on the route or in its parameters.
-
-                         Route parameters take precedence over route data
-                         attributes.
-                         */
-                        if (hasDynamicBreadcrumb) {
-                            breadCrumbLabel = route.snapshot.params[ROUTE_PARAM_BREADCRUMB].replace(/_/g, " ");
-                        } else if (breadcrumbData.dynamicBreadcrumb) {
-                            breadCrumbLabel = route.snapshot.params[breadcrumbData.dynamicBreadcrumb];
-                        } else if (breadcrumbData.breadcrumb) {
-                            breadCrumbLabel = breadcrumbData.breadcrumb;
-                        }
-
-                        // Get the route's URL segment
-                        let routeURL: string = route.snapshot.url.map(segment => segment.path).join("/");
-                        url += `/${routeURL}`;
+                        const breadCrumb = this.breadcrumbService.getBreadCrumbData(
+                            route.snapshot.data,
+                            route.snapshot.params[ROUTE_PARAM_BREADCRUMB]
+                        );
 
                         // Add breadcrumb
-                        let breadcrumb: IBreadcrumb = {
-                            label: breadCrumbLabel,
-                            params: {},
-                            url: url,
-                            className: breadcrumbData.className
+                        let breadcrumb = {
+                            label: breadCrumb.label,
+                            params: breadCrumb.params || {},
+                            url: breadCrumb.url || url,
+                            className: breadCrumb.className,
+                            prefix: breadCrumb.prefix
                         };
 
                         // Add the breadcrumb as 'prefixed'. It will appear before all breadcrumbs
-                        if (route.snapshot.data.hasOwnProperty(PREFIX_BREADCRUMB)) {
+                        if (breadCrumb.prefix) {
                             this.breadcrumbService.storePrefixed(breadcrumb);
                         }
                         else {
                             this.currentBreadcrumbs.push(breadcrumb);
                         }
-
                     }
-
                 });
 
                 this.breadcrumbService.store(this.currentBreadcrumbs);
