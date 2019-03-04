@@ -1,9 +1,10 @@
 # ng2-breadcrumbs
+
 [![npm version](https://badge.fury.io/js/ng2-breadcrumbs.svg)](https://badge.fury.io/js/ng2-breadcrumbs)
 
 ng2-breadrumbs is a module for [Angular 7](https://angular.io/) that generates a breadcrumb for any page of your application. It is based on the built-in [Angular 7 router](https://angular.io/docs/ts/latest/guide/router.html).
 
-## [Demo](https://centroida.github.io/ng7-breadcrumbs/)
+## [Demo](https://codekeyz.github.io/ng2-breadcrumbs/)
 
 # Usage
 
@@ -21,7 +22,7 @@ npm install --save ng2-breadcrumbs
 import {BreadcrumbsModule} from "ng2-breadcrumbs";
 
 @NgModule({
-  imports: [ 
+  imports: [
     BreadcrumbsModule,
   ],
 })
@@ -31,21 +32,21 @@ import {BreadcrumbsModule} from "ng2-breadcrumbs";
 
 ```js
 export const ROUTES: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {
-        path: 'home',
-        loadChildren: 'app/home/home.module#HomeModule',
-        data: {
-            breadcrumb: 'Home'
-        }
-    },
-    {
-        path: 'stores',
-        loadChildren: 'app/stores/stores.module#StoresModule',
-        data: {
-            breadcrumb: 'Stores'
-        }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'home',
+    loadChildren: 'app/home/home.module#HomeModule',
+    data: {
+      breadcrumb: 'Home'
     }
+  },
+  {
+    path: 'stores',
+    loadChildren: 'app/stores/stores.module#StoresModule',
+    data: {
+      breadcrumb: 'Stores'
+    }
+  }
 ];
 ```
 
@@ -56,22 +57,21 @@ export const ROUTES: Routes = [
 <router-outlet></router-outlet>
 ```
 
-5. Then your `StoresModule`'s routes will look like this:
+1. Then your `StoresModule`'s routes will look like this:
 
 ```js
 const STORE_ROUTES: Routes = [
-    {
-        path: '',
-        component: StoresComponent
+  {
+    path: '',
+    component: StoresComponent
+  },
+  {
+    path: 'books',
+    data: {
+      breadcrumb: 'Books'
     },
-    {
-        path: 'books',
-        data: {
-            breadcrumb: 'Books'
-        },
-        loadChildren: 'app/books/books.module#BooksModule'
-    }
-
+    loadChildren: 'app/books/books.module#BooksModule'
+  }
 ];
 ```
 
@@ -79,31 +79,32 @@ const STORE_ROUTES: Routes = [
 
 In case you want a dynamic breadcrumb name, you can pass it as a `:breadcrumb` route parameter when navigating:
 **Route:**
+
 ```js
 //Add an extra route parameter that will contain the breadcrumb name
 const BOOK_ROUTES: Routes = [
-    {
-        path: '',
-        component: BooksComponent
-    },
-    {
-        path: 'book/:id/:breadcrumb',
-        component: BookComponent
-    }
+  {
+    path: '',
+    component: BooksComponent
+  },
+  {
+    path: 'book/:id/:breadcrumb',
+    component: BookComponent
+  }
 ];
 ```
+
 **Router code:**
+
 ```
     public goToBook(book: Book) {
         this.router.navigate(['book' , book.Id, book.Name], { relativeTo: this.route });
     }
 ```
 
-
 ## Adding routes manually
 
 In case the router configuration does not satisfy the way you want to design your breadcrumb structure, you can do it manually through `BreadcrumbsService`. You can add your custom breadcrumbs through your route's routable component, for example:
-
 
 ```
 export class MyRoutableComponent {
@@ -118,20 +119,21 @@ export class MyRoutableComponent {
 ```
 
 ### Prefixing routes
- Suppose that you already have your breadcrumbs generated, but due to the nesting of the routers, you want to add a breadcrumb from the parent router:
+
+Suppose that you already have your breadcrumbs generated, but due to the nesting of the routers, you want to add a breadcrumb from the parent router:
 
 ```
 this.breadcrumbs.storePrefixed({label: 'Home' , url: '/', params: []})
 ```
 
 ### Breadcrumb format
-The `BreadcrumbsService`'s `store' and `storePrefixed` methods breadcrumb objects. A breadcrumb object should contain:
-- `label` -  The text displayed on the breadcrumb
+
+The `BreadcrumbsService`'s `store' and`storePrefixed` methods breadcrumb objects. A breadcrumb object should contain:
+
+- `label` - The text displayed on the breadcrumb
 - `url` - The link that it leads to
 - `params` - A collection of route [parameters](https://angular.io/api/router/Params)
 
-
 # TODO
- 1. Add more use cases (using routerLinks, for example).
 
- 
+1.  Add more use cases (using routerLinks, for example).

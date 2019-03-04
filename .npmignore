@@ -12,6 +12,7 @@ coverage
 
 # demo build
 demo
+dist
 demo-build
 demo/webpack/webpack.config.js
 
