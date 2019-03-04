@@ -28,16 +28,15 @@ export class BooksComponent implements OnInit {
         Price: 13.0,
         Author: ' Tom Clancey',
         PictureURL:
-          'http://www.tolkien.co.uk/file/IfbTdA8/fc3a59a7-1abc-4be2-96ce-83266a98a2e8.jpg',
+          'https://ia800801.us.archive.org/zipview.php?zip=/18/items/olcovers662/olcovers662-L.zip&file=6627873-L.jpg',
         Rating: 4
       },
       {
         Id: 912,
-        Name: "Harry Potter and the Philosopher's Stone",
+        Name: 'THE PILLARS OF THE EARTH',
         Price: 10.0,
-        Author: 'J. K. Rowling',
-        PictureURL:
-          'http://t0.gstatic.com/images?q=tbn:ANd9GcSXGpfJzjAobQVs1AmpnWQf4amf8RzgLbc7twV6nOLncOwASjUM',
+        Author: 'TIM NOONAN',
+        PictureURL: 'https://covers.openlibrary.org/b/id/7108425-M.jpg',
         Rating: 4
       },
       {
